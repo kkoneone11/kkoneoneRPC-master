@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="interface" />
         <module name="kkoneoneRPC-Consumer" />
+        <module name="kkoneoneRPC" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="interface" options="-parameters" />
+      <module name="kkoneoneRPC" options="-parameters" />
       <module name="kkoneoneRPC-Consumer" options="-parameters" />
     </option>
   </component>

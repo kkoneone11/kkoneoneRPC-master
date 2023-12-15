@@ -1,0 +1,2 @@
+json=org.kkoneone.rpc.protocol.serialization.JsonSerialization
+hessian=org.kkoneone.rpc.protocol.serialization.HessianSerialization

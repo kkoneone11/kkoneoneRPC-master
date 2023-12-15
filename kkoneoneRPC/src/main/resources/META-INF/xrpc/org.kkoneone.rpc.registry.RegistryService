@@ -1,0 +1,2 @@
+redis=org.kkoneone.rpc.registry.RedisRegistry
+zookeeper=org.kkoneone.rpc.registry.ZookeeperRegistry

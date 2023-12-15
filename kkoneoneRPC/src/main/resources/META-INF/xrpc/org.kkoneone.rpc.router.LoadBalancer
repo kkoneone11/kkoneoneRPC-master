@@ -1,0 +1,2 @@
+consistentHash=org.kkoneone.rpc.router.ConsistentHashLoadBalancer
+roundRobin=org.kkoneone.rpc.router.RoundRobinLoadBalancer
