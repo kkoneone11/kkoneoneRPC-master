@@ -6,7 +6,7 @@ package org.kkoneone.rpc.demo;
  * @Date：2023/12/15 21:15
  */
 public interface Test2Service {
-    void test(String key);
+    String test(String key);
 
     void test2(String key);
 }

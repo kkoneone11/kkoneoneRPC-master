@@ -1,5 +1,8 @@
 package org.kkoneone.rpc.demo.controller;
 
+import org.kkoneone.rpc.annotation.RpcReference;
+import org.kkoneone.rpc.common.constants.FaultTolerantRules;
+import org.kkoneone.rpc.common.constants.LoadBalancerRules;
 import org.kkoneone.rpc.demo.Test2Service;
 import org.kkoneone.rpc.demo.TestService;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Test {
 
-//    @RpcReference(timeout = 10000L,faultTolerant = FaultTolerantRules.Failover,loadBalancer = LoadBalancerRules.RoundRobin)
+    @RpcReference(timeout = 10000L,faultTolerant = FaultTolerantRules.Failover,loadBalancer = LoadBalancerRules.RoundRobin)
     TestService testService;
 
-//    @RpcReference(loadBalancer = LoadBalancerRules.ConsistentHash)
+    @RpcReference(loadBalancer = LoadBalancerRules.ConsistentHash)
     Test2Service test2Service;
 
     /**
@@ -40,8 +43,7 @@ public class Test {
     @RequestMapping("test2/{key}")
     public String test2(@PathVariable String key){
 
-//        return test2Service.test(key);
-        return null;
+        return test2Service.test(key);
     }
 
     /**
@@ -51,7 +53,7 @@ public class Test {
      */
     @RequestMapping("test3/{key}")
     public String test3(@PathVariable String key){
-//        testService.test2(key);
+        testService.test2(key);
         return "test2 ok";
     }
 }

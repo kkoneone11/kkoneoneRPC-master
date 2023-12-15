@@ -1,5 +1,6 @@
 package org.kkoneone.rpc.demo;
 
+import org.kkoneone.rpc.annotation.EnableConsumerRpc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date：2023/12/15 21:57
  */
 @SpringBootApplication
-//@EnableConsumerRpc //注入消费者
+@EnableConsumerRpc //注入消费者
 public class RpcConsumerDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(RpcConsumerDemoApplication.class, args);
