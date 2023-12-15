@@ -17,6 +17,7 @@
         <module>interface</module>
         <module>kkoneoneRPC-Consumer</module>
         <module>kkoneoneRPC</module>
+        <module>kkoneoneRPC-Provider</module>
     </modules>
 
     <properties>
