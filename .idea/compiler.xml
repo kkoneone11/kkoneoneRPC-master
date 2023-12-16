@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="interface" />
         <module name="kkoneoneRPC-Provider" />
+        <module name="kkoneoneRPC-Provider2" />
         <module name="kkoneoneRPC-Consumer" />
         <module name="kkoneoneRPC" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="kkoneoneRPC" options="-parameters" />
       <module name="kkoneoneRPC-Consumer" options="-parameters" />
       <module name="kkoneoneRPC-Provider" options="-parameters" />
+      <module name="kkoneoneRPC-Provider2" options="-parameters" />
     </option>
   </component>
 </project>
