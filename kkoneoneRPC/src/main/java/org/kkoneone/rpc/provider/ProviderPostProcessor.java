@@ -47,6 +47,23 @@ public class ProviderPostProcessor implements InitializingBean, BeanPostProcesso
     private static String serverAddress = "127.0.0.1";
     private final Map<String, Object> rpcServiceMap = new HashMap<>();
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Thread t = new Thread(() -> {
+            try {
+                startRpcServer();
+            } catch (Exception e) {
+                logger.error("start rpc server error.", e);
+            }
+        });
+        t.setDaemon(true);
+        t.start();
+        SerializationFactory.init();
+        RegistryFactory.init();
+        LoadBalancerFactory.init();
+        FilterConfig.initServiceFilter();
+        ThreadPollFactory.setRpcServiceMap(rpcServiceMap);
+    }
 
     /**
      * 启动RPC服务
@@ -98,27 +115,8 @@ public class ProviderPostProcessor implements InitializingBean, BeanPostProcesso
     }
 
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        Thread t = new Thread(() -> {
-            try {
-                startRpcServer();
-            } catch (Exception e) {
-                logger.error("start rpc server error.", e);
-            }
-        });
-        t.setDaemon(true);
-        t.start();
-        SerializationFactory.init();
-        RegistryFactory.init();
-        LoadBalancerFactory.init();
-        FilterConfig.initServiceFilter();
-        ThreadPollFactory.setRpcServiceMap(rpcServiceMap);
-    }
-
-
     /**
-     * 服务注册
+     * 服务注册 代理层注入
      * @param bean
      * @param beanName
      * @return
