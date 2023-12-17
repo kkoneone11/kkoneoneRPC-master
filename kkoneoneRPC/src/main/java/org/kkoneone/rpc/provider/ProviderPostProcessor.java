@@ -7,17 +7,21 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.kkoneone.rpc.Filter.FilterConfig;
 import org.kkoneone.rpc.annotation.RpcService;
 import org.kkoneone.rpc.common.RpcServiceNameBuilder;
 import org.kkoneone.rpc.common.ServiceMeta;
 import org.kkoneone.rpc.config.RpcProperties;
+import org.kkoneone.rpc.poll.ThreadPollFactory;
 import org.kkoneone.rpc.protocol.codec.RpcDecoder;
 import org.kkoneone.rpc.protocol.codec.RpcEncoder;
 import org.kkoneone.rpc.protocol.handler.service.RpcRequestHandler;
 import org.kkoneone.rpc.protocol.handler.service.ServiceAfterFilterHandler;
 import org.kkoneone.rpc.protocol.handler.service.ServiceBeforeFilterHandler;
+import org.kkoneone.rpc.protocol.serialization.SerializationFactory;
 import org.kkoneone.rpc.registry.RegistryFactory;
 import org.kkoneone.rpc.registry.RegistryService;
+import org.kkoneone.rpc.router.LoadBalancerFactory;
 import org.kkoneone.rpc.utils.PropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,7 +100,20 @@ public class ProviderPostProcessor implements InitializingBean, BeanPostProcesso
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
+        Thread t = new Thread(() -> {
+            try {
+                startRpcServer();
+            } catch (Exception e) {
+                logger.error("start rpc server error.", e);
+            }
+        });
+        t.setDaemon(true);
+        t.start();
+        SerializationFactory.init();
+        RegistryFactory.init();
+        LoadBalancerFactory.init();
+        FilterConfig.initServiceFilter();
+        ThreadPollFactory.setRpcServiceMap(rpcServiceMap);
     }
 
 
