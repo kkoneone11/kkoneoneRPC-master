@@ -148,6 +148,8 @@ public class RedisRegistry implements RegistryService{
         if (!list.isEmpty()){
             //利用JSON工具将String转化为ServiceMeta
            serviceMetas = list.stream().map(o -> JSON.parseObject(o, ServiceMeta.class)).collect(Collectors.toList());
+        }else{
+            System.out.println("服务列表为空");
         }
         //关闭redis
         jedis.close();
