@@ -11,7 +11,6 @@ import org.kkoneone.rpc.spi.ExtensionLoader;
 public class SerializationFactory {
     //先生成一个SPI机制实例然后根据提供serializationr来决定对应的序列化方式
     public static RpcSerialization get(String serialization) throws Exception {
-
         return ExtensionLoader.getInstance().get(serialization);
 
     }

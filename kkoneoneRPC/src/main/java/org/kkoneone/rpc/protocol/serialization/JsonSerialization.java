@@ -74,7 +74,7 @@ public class JsonSerialization implements RpcSerialization{
         if(clz.equals(RpcRequest.class)){
             //将t转化
             RpcRequest rpcRequest = (RpcRequest) t;
-            rpcRequest.setData(convertRes(rpcRequest.getData(),rpcRequest.getDataClass()));
+            rpcRequest.setData(convertReq(rpcRequest.getData(),rpcRequest.getDataClass()));
             return (T) rpcRequest;
          //否则为RpcResponse
         }else{
