@@ -144,10 +144,14 @@ public class RedisRegistry implements RegistryService{
         Jedis jedis = getJedis();
         //根据key列出所有服务
         List<String> list = jedis.lrange(key, 0, -1);
+        List<ServiceMeta> serviceMetas = null;
+        if (!list.isEmpty()){
+            //利用JSON工具将String转化为ServiceMeta
+           serviceMetas = list.stream().map(o -> JSON.parseObject(o, ServiceMeta.class)).collect(Collectors.toList());
+        }
         //关闭redis
         jedis.close();
-        //利用JSON工具将String转化为ServiceMeta
-        List<ServiceMeta> serviceMetas = list.stream().map(o -> JSON.parseObject(o, ServiceMeta.class)).collect(Collectors.toList());
+
         return serviceMetas;
     }
 
