@@ -18,6 +18,6 @@ public class MsgHeader implements Serializable {
     private byte status; // 状态
     private long requestId; // 请求 ID
     private int serializationLen;
-    private byte[] serializations;
+    private byte[] serializations;// 序列化策略
     private int msgLen; // 数据长度
 }
