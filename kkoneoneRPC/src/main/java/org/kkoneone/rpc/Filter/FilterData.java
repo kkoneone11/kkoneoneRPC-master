@@ -22,8 +22,8 @@ public class FilterData {
     private String className;
     private String methodName;
     private Object args;
-    private Map<String,Object> serviceAttachments;
-    private Map<String,Object> clientAttachments;
+    private Map<String,Object> serviceAttachments; //存储服务相关的信息
+    private Map<String,Object> clientAttachments; //存储客户端相关的信息
     private RpcResponse data; // 执行业务逻辑后的数据
 
     public FilterData(RpcRequest request) {
