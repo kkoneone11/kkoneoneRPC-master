@@ -10,3 +10,6 @@ SpringBoot + Netty
 在consumer和provider 中进行配置注册中心相关配置
 启动consumer和provider1/2 模块，进行http请求进行测试就行了
 如需进行拓展，参考consumer中的SPI机制即可
+
+
+演示使用教程：https://www.yuque.com/kkoneone11/kgms6n/gefnf769ccv92rcz?singleDoc# 《RPC项目演示》
